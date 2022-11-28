@@ -1,0 +1,448 @@
+env:
+  TERM: xterm-256color
+
+window:
+  padding:
+    x: 5
+    y: 5
+  dynamic_padding: false
+  decorations: none
+  #startup_mode: Fullscreen
+  title: alacritty
+  dynamic_title: true
+  class:
+    instance: alacritty
+    general: alacritty
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+font:
+  normal:
+    family: mononokiNerd Font
+    style: Regular
+  bold:
+    family: mononoki Nerd Font
+    style: Regular
+
+  italic:
+    family: mononoki Nerd Font
+    style: Regular
+
+  bold_italic:
+    family: mononoki Nerd Font
+    style: Regular
+  size: 12.0
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: 0
+
+# If `true`, bold text is drawn using the bright color variants.
+draw_bold_text_with_bright_colors: true
+
+# Bell
+#
+# The bell is rung every time the BEL control character is received.
+#bell:
+# Visual Bell Animation
+#
+# Animation effect for flashing the screen when the visual bell is rung.
+#
+# Values for `animation`:
+#   - Ease
+#   - EaseOut
+#   - EaseOutSine
+#   - EaseOutQuad
+#   - EaseOutCubic
+#   - EaseOutQuart
+#   - EaseOutQuint
+#   - EaseOutExpo
+#   - EaseOutCirc
+#   - Linear
+#animation: EaseOutExpo
+# Duration of the visual bell flash. A `duration` of `0` will disable the
+# visual bell animation.
+#duration: 0
+# Visual bell animation color.
+#color: '#ffffff'
+# Bell Command
+#
+# This program is executed whenever the bell is rung.
+#
+# When set to `command: None`, no command will be executed.
+#
+# Example:
+#   command:
+#     program: notify-send
+#     args: ["Hello, World!"]
+#
+#command: None
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: true
+
+cursor:
+  #   - ▇ Block
+  #   - _ Underline
+  #   - | Beam
+  style: Underline
+  vi_mode_style: Block
+  unfocused_hollow: true
+  thickness: 0.15
+
+live_config_reload: false
+
+shell:
+  program: /bin/bash
+  args:
+    - --login
+
+working_directory: /home/thotspot/
+
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+  hide_when_typing: true
+
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+
+hints:
+  url:
+    launcher:
+      program: firefox
+      args: []
+    modifiers: None
+
+# Key bindings
+#
+# Key bindings are specified as a list of objects. For example, this is the
+# default paste binding:
+#
+# `- { key: V, mods: Control|Shift, action: Paste }`
+#
+# Each key binding will specify a:
+#
+# - `key`: Identifier of the key pressed
+#
+#    - A-Z
+#    - F1-F24
+#    - Key0-Key9
+#
+#    A full list with available key codes can be found here:
+#    https://docs.rs/glutin/*/glutin/event/enum.VirtualKeyCode.html#variants
+#
+#    Instead of using the name of the keys, the `key` field also supports using
+#    the scancode of the desired key. Scancodes have to be specified as a
+#    decimal number. This command will allow you to display the hex scancodes
+#    for certain keys:
+#
+#       `showkey --scancodes`.
+#
+# Then exactly one of:
+#
+# - `chars`: Send a byte sequence to the running application
+#
+#    The `chars` field writes the specified string to the terminal. This makes
+#    it possible to pass escape sequences. To find escape codes for bindings
+#    like `PageUp` (`"\x1b[5~"`), you can run the command `showkey -a` outside
+#    of tmux. Note that applications use terminfo to map escape sequences back
+#    to keys. It is therefore required to update the terminfo when changing an
+#    escape sequence.
+#
+# - `action`: Execute a predefined action
+#
+#   - ToggleViMode
+#   - SearchForward
+#   - SearchBackward
+#   - Copy
+#   - Paste
+#   - PasteSelection
+#   - IncreaseFontSize
+#   - DecreaseFontSize
+#   - ResetFontSize
+#   - ScrollPageUp
+#   - ScrollPageDown
+#   - ScrollHalfPageUp
+#   - ScrollHalfPageDown
+#   - ScrollLineUp
+#   - ScrollLineDown
+#   - ScrollToTop
+#   - ScrollToBottom
+#   - ClearHistory
+#   - Hide
+#   - Minimize
+#   - Quit
+#   - ToggleFullscreen
+#   - SpawnNewInstance
+#   - ClearLogNotice
+#   - ClearSelection
+#   - ReceiveChar
+#   - None
+#
+#   (`mode: Vi` only):
+#   - Open
+#   - Up
+#   - Down
+#   - Left
+#   - Right
+#   - First
+#   - Last
+#   - FirstOccupied
+#   - High
+#   - Middle
+#   - Low
+#   - SemanticLeft
+#   - SemanticRight
+#   - SemanticLeftEnd
+#   - SemanticRightEnd
+#   - WordRight
+#   - WordLeft
+#   - WordRightEnd
+#   - WordLeftEnd
+#   - Bracket
+#   - ToggleNormalSelection
+#   - ToggleLineSelection
+#   - ToggleBlockSelection
+#   - ToggleSemanticSelection
+#   - SearchNext
+#   - SearchPrevious
+#   - SearchStart
+#   - SearchEnd
+#
+#   (Linux/BSD only):
+#   - CopySelection: Copies into selection buffer
+#
+# - `command`: Fork and execute a specified command plus arguments
+#
+#    The `command` field must be a map containing a `program` string and an
+#    `args` array of command line parameter strings. For example:
+#       `{ program: "alacritty", args: ["-e", "vttest"] }`
+#
+# And optionally:
+#
+# - `mods`: Key modifiers to filter binding actions
+#
+#    - Command
+#    - Control
+#    - Option
+#    - Super
+#    - Shift
+#    - Alt
+#
+#    Multiple `mods` can be combined using `|` like this:
+#       `mods: Control|Shift`.
+#    Whitespace and capitalization are relevant and must match the example.
+#
+# - `mode`: Indicate a binding for only specific terminal reported modes
+#
+#    This is mainly used to send applications the correct escape sequences
+#    when in different modes.
+#
+#    - AppCursor
+#    - AppKeypad
+#    - Alt
+#
+#    A `~` operator can be used before a mode to apply the binding whenever
+#    the mode is *not* active, e.g. `~Alt`.
+#
+# Bindings are always filled by default, but will be replaced when a new
+# binding with the same triggers is defined. To unset a default binding, it can
+# be mapped to the `ReceiveChar` action. Alternatively, you can use `None` for
+# a no-op if you do not wish to receive input characters for that binding.
+#
+# If the same trigger is assigned to multiple actions, all of them are executed
+# in the order they were defined in.
+key_bindings:
+  - { key: L, mods: Control, action: ClearLogNotice }
+  - { key: L, mods: Control, mode: ~Vi, chars: "\f" }
+  - {
+      key: PageUp,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollLineUp
+    }
+  - {
+      key: PageDown,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollLineDown
+    }
+  - {
+      key: Home,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollToTop
+    }
+  - {
+      key: End,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollToBottom
+    }
+
+  # Vi Mode
+  - {
+      key: Space,
+      mods: Shift|Control,
+      mode: Vi,
+      action: ScrollToBottom
+    }
+  - { key: Space, mods: Shift|Control, action: ToggleViMode }
+  - { key: Escape, mode: Vi, action: ClearSelection }
+  - { key: I, mode: Vi, action: ScrollToBottom }
+  - { key: I, mode: Vi, action: ToggleViMode }
+  - { key: Y, mods: Control, mode: Vi, action: ScrollLineUp }
+  - {
+      key: E,
+      mods: Control,
+      mode: Vi,
+      action: ScrollLineDown
+    }
+  - { key: G, mode: Vi, action: ScrollToTop }
+  - { key: G, mods: Shift, mode: Vi, action: ScrollToBottom }
+  - { key: B, mods: Control, mode: Vi, action: ScrollPageUp }
+  - {
+      key: F,
+      mods: Control,
+      mode: Vi,
+      action: ScrollPageDown
+    }
+  - {
+      key: U,
+      mods: Control,
+      mode: Vi,
+      action: ScrollHalfPageUp
+    }
+  - {
+      key: D,
+      mods: Control,
+      mode: Vi,
+      action: ScrollHalfPageDown
+    }
+  - { key: Y, mode: Vi, action: Copy }
+  - { key: Y, mode: Vi, action: ClearSelection }
+  - { key: Copy, mode: Vi, action: ClearSelection }
+  - { key: V, mode: Vi, action: ToggleNormalSelection }
+  - {
+      key: V,
+      mods: Shift,
+      mode: Vi,
+      action: ToggleLineSelection
+    }
+  - {
+      key: V,
+      mods: Control,
+      mode: Vi,
+      action: ToggleBlockSelection
+    }
+  - {
+      key: V,
+      mods: Alt,
+      mode: Vi,
+      action: ToggleSemanticSelection
+    }
+  - { key: Return, mode: Vi, action: Open }
+  - { key: K, mode: Vi, action: Up }
+  - { key: J, mode: Vi, action: Down }
+  - { key: H, mode: Vi, action: Left }
+  - { key: L, mode: Vi, action: Right }
+  - { key: Up, mode: Vi, action: Up }
+  - { key: Down, mode: Vi, action: Down }
+  - { key: Left, mode: Vi, action: Left }
+  - { key: Right, mode: Vi, action: Right }
+  - { key: Key0, mode: Vi, action: First }
+  - { key: Key4, mods: Shift, mode: Vi, action: Last }
+  - {
+      key: Key6,
+      mods: Shift,
+      mode: Vi,
+      action: FirstOccupied
+    }
+  - { key: H, mods: Shift, mode: Vi, action: High }
+  - { key: M, mods: Shift, mode: Vi, action: Middle }
+  - { key: L, mods: Shift, mode: Vi, action: Low }
+  - { key: B, mode: Vi, action: SemanticLeft }
+  - { key: W, mode: Vi, action: SemanticRight }
+  - { key: E, mode: Vi, action: SemanticRightEnd }
+  - { key: B, mods: Shift, mode: Vi, action: WordLeft }
+  - { key: W, mods: Shift, mode: Vi, action: WordRight }
+  - { key: E, mods: Shift, mode: Vi, action: WordRightEnd }
+  - { key: Key5, mods: Shift, mode: Vi, action: Bracket }
+  - { key: Slash, mode: Vi, action: SearchForward }
+  - {
+      key: Slash,
+      mods: Shift,
+      mode: Vi,
+      action: SearchBackward
+    }
+  - { key: N, mode: Vi, action: SearchNext }
+  - { key: N, mods: Shift, mode: Vi, action: SearchPrevious }
+
+  # (Windows, Linux, and BSD only)
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: F, mods: Control|Shift, action: SearchForward }
+  - { key: B, mods: Control|Shift, action: SearchBackward }
+  - {
+      key: C,
+      mods: Control|Shift,
+      mode: Vi,
+      action: ClearSelection
+    }
+  - { key: Insert, mods: Shift, action: PasteSelection }
+  - { key: Key0, mods: Control, action: ResetFontSize }
+  - {
+      key: PageUp,
+      mods: Control|Shift,
+      action: IncreaseFontSize
+    }
+  - {
+      key: PageDown,
+      mods: Control|Shift,
+      action: DecreaseFontSize
+    }
+colors:
+
+  # Default colors
+  primary:
+    background: '#282828'
+    foreground: '#fdf4c1'
+
+  # Normal colors
+  normal:
+    black: '#282828'
+    red: '#9d0006'
+    green: '#79740e'
+    yellow: '#b57614'
+    blue: '#076678'
+    magenta: '#8f3f71'
+    cyan: '#00a7af'
+    white: '#fdf4c1'
+
+  # Bright colors
+  bright:
+    black: '#32302f'
+    red: '#fb4933'
+    green: '#b8bb26'
+    yellow: '#fabd2f'
+    blue: '#83a598'
+    magenta: '#d3869b'
+    cyan: '#3fd7e5'
+    white: '#ffffc8'
+
+  # Dim colors (Optional)
+  dim:
+    black: '#1d2021'
+    red: '#421e1e'
+    green: '#232b0f'
+    yellow: '#4d3b27'
+    blue: '#2b3c44'
+    magenta: '#4e3d45'
+    cyan: '#205161'
+    white: '#f4e8ba'
+theme: Darktooth
