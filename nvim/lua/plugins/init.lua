@@ -24,7 +24,15 @@ return require 'packer'.startup(function()
                 show_current_context_start = true,
             }
         end
+
     })
+    use {
+        "ThePrimeagen/refactoring.nvim",
+        requires = {
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-treesitter/nvim-treesitter" }
+        }
+    }
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
@@ -62,10 +70,6 @@ return require 'packer'.startup(function()
         "gbprod/substitute.nvim",
         config = function()
             require("substitute").setup({})
-            vim.keymap.set("n", "s", "<cmd>lua require('substitute').operator()<cr>", { noremap = true })
-            vim.keymap.set("n", "ss", "<cmd>lua require('substitute').line()<cr>", { noremap = true })
-            vim.keymap.set("n", "S", "<cmd>lua require('substitute').eol()<cr>", { noremap = true })
-            vim.keymap.set("x", "s", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
         end
     })
     use {
@@ -97,7 +101,7 @@ return require 'packer'.startup(function()
         "folke/noice.nvim",
         event = "VimEnter",
         config = function()
-            require 'noice'.setup({ config })
+            require 'noice'.setup({ messages = { enabled = false } })
         end,
         requires = {
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries

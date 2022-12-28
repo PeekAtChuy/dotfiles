@@ -1,4 +1,5 @@
 require('settings')
+
 require('color.catppuccin')
 require('plugins')
 require('nvimtree')
@@ -8,4 +9,5 @@ require('lsp-config.complete')
 --require('lsp-config.nvim-cmp')
 require('lua-line')
 require('treesitter-config')
+require('refactor.ref')
 --require('test')
